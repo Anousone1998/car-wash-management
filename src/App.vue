@@ -5,7 +5,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            Car-wash------der
+            Car-wash
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -57,27 +57,27 @@ export default {
             route: '/'
          },
       { 
-          title: "Products",
+          title: "ຈັດການສິນຄ້າ",
            icon: "mdi-apps",
             route: '/manage_product'
          },
       {
-           title: "Supilers",
+           title: "ຈັດການຜູ້ສະໜອງ",
             icon: "mdi-table-arrow-left",
             route: '/supilers'
      },
       {
-           title: "Employees",
+           title: "ຈັດການພະນັກງານ",
             icon: "mdi-account-group",
             route: '/employees'
      },
       {
-           title: "Report",
+           title: "ລາຍງານ",
             icon: " mdi-file-chart",
              route: '/report'
      },
       {
-           title: "Manage Service",
+           title: "ຈັດການບໍລິການ",
             icon: "mdi-playlist-star"
      },
     ],
