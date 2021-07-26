@@ -18,7 +18,7 @@
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
-          max-width="500px"
+          max-width="700px"
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -42,51 +42,56 @@
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
+                      v-model="editedItem.product_id"
+                      outlined
+                      label="Product ID"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="6"
+                  >
+                    <v-text-field
+                    outlined
+                      v-model="editedItem.bill_no"
+                       label="Bill No"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="6"
+                  >
+                    <v-text-field
+                    outlined
                       v-model="editedItem.name"
-                      label="Dessert name"
+                      label="Product Name"
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
+                      v-model="editedItem.type"
+                      outlined
+                      label="Product Type"
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                    outlined
+                      v-model="editedItem.amount"
+                      label="Product Amount"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -140,14 +145,7 @@
         mdi-delete
       </v-icon>
     </template>
-    <template v-slot:no-data>
-      <v-btn
-        color="primary"
-        @click="initialize"
-      >
-        Reset
-      </v-btn>
-    </template>
+
   </v-data-table>
 </template>
 
@@ -159,37 +157,38 @@
       dialogDelete: false,
       headers: [
         {
-          text: 'Bill Number',
+          text: 'Product ID',
           align: 'start',
           sortable: false,
-          value: 'carbs',
+          value: 'product_id',
         },
-        { text: 'Product Name', value: 'name' },
-        { text: 'Product Type', value: 'fat' },
-        { text: 'Product Amount', value: 'carbs' },
+         { text: 'Bill No', value: 'bill_no',sortable: false, },
+        { text: 'Product Name', value: 'name',sortable: false, },
+        { text: 'Product Type', value: 'type', sortable: false, },
+        { text: 'Product Amount', value: 'amount', sortable: false, },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
-      desserts: [],
+      products: [],
       editedIndex: -1,
       editedItem: {
+        product_id: '',
+        bill_no: '',
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        type: '',
+        amount: 0,
       },
       defaultItem: {
+        product_id: '',
+        bill_no: '',
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        type: '',
+        amount: 0,
       },
     }),
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'New Product' : 'Edit Product'
       },
     },
 
@@ -208,59 +207,38 @@
 
     methods: {
       initialize () {
-        this.desserts = [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
+        this.products = [
+          { 
+            product_id: '23456',
+            bill_no: '1234',
+            name: 'Frome',
+            type: spray,
+            amount: 6,
           },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
+         {
+            product_id: '23456',
+            bill_no: '2310',
+            name: 'Frome',
+            type: 'jell',
+            amount: 3,
           },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-          }
         ]
       },
 
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.products.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.products.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialogDelete = true
       },
 
       deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
+        this.products.splice(this.editedIndex, 1)
         this.closeDelete()
       },
 
@@ -282,9 +260,9 @@
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.products[this.editedIndex], this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
+          this.products.push(this.editedItem)
         }
         this.close()
       },
