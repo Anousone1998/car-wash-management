@@ -1,19 +1,18 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
-    sort-by="calories"
+    :items="employees"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar flat>
-        <v-toolbar-title>Employees</v-toolbar-title>
+        <v-toolbar-title>ພະນັກງານທັງໝົດ</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-              New Employee
+             ເພີ່ມພະນັກງານໃໝ່
             </v-btn>
           </template>
           <v-card>
@@ -24,34 +23,46 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.name"
-                      label="Name"
+                      v-model="editedItem.id"
+                      outlined
+                      label="ID"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.calories"
-                      label="Address"
+                      v-model="editedItem.emp_name"
+                      label="ຊື່"
+                      outlined
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
+                      v-model="editedItem.dateOfBirth"
+                      outlined
+                      label="ວັນເດືອນປີເກີດ"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
+                      outlined
+                      v-model="editedItem.phone"
+                      label="ເບີໂທ"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                    outlined
+                      v-model="editedItem.address"
+                      label="ທີ່ຢູ່"
+                    ></v-text-field>
+                  </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                    <v-text-field
+                    outlined
+                      v-model="editedItem.start_date"
+                      label="ມື້ເຂົ້າເຮັດວຽກ"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -60,11 +71,11 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">
-                Cancel
+              <v-btn color="gray darken-1" text @click="close">
+                ຍົກເລີກ
               </v-btn>
               <v-btn color="blue darken-1" text @click="save">
-                Save
+                ບັນທຶກ
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -72,15 +83,15 @@
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5"
-              >Are you sure you want to delete this item?</v-card-title
+              >ທາ່ນຕ້ອງການລຶບຂໍ້ມູນນີ້ແທ້ບໍ່?</v-card-title
             >
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="closeDelete"
-                >Cancel</v-btn
+                >ຍົກເລີກ</v-btn
               >
               <v-btn color="blue darken-1" text @click="deleteItemConfirm"
-                >OK</v-btn
+                >ລຶບ</v-btn
               >
               <v-spacer></v-spacer>
             </v-card-actions>
@@ -96,11 +107,6 @@
         mdi-delete
       </v-icon>
     </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">
-        Reset
-      </v-btn>
-    </template>
   </v-data-table>
 </template>
 
@@ -112,38 +118,32 @@ export default {
     dialogDelete: false,
     headers: [
       {
-        text: "Name",
+        text: "ID",
         align: "start",
         sortable: false,
-        value: "name",
+        value: "id",
       },
-      { text: "Age", value: "calories" },
-      { text: "Address", value: "fat" },
-      { text: "Phone", value: "carbs" },
-      { text: "Start Date", value: "protein" },
-      { text: "Actions", value: "actions", sortable: false },
+      { text: "ຊື່ພະນັກງານ", value: "emp_name", sortable: false},
+      { text: "ວັນເດືອນປີເກີດ", value: "dateOfBirth", sortable: false },
+      { text: "ເບີໂທ", value: "phone" , sortable: false},
+      { text: "ທີ່ຢູ່", value: "address", sortable: false },
+       { text: "ວັນ-ເວວລາເລີ່ມເຮັດວຽກ", value: "start_date" },
+      { text: "ຈັດການ", value: "actions", sortable: false },
     ],
-    desserts: [],
+    employees: [],
     editedIndex: -1,
     editedItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
-    defaultItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
+      emp_name: "",
+      dateOfBirth: "",
+      phone: "",
+      address: "",
+      start_date: "",
     },
   }),
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "New Item" : "Edit Item";
+      return this.editedIndex === -1 ? "ເພີ່ມພະນັກງານໃໝ່" : "ແກ້ໄຂພະນັກງານ";
     },
   },
 
@@ -162,59 +162,31 @@ export default {
 
   methods: {
     initialize() {
-      this.desserts = [
+      this.employees = [
         {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-        },
-        {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-        },
-        {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
+          emp_name: "Lactasoiyy",
+      dateOfBirth: "12/12/2000",
+      phone: "2345765",
+      address: "xangabuli",
+      start_date: "12/7/2019",
         },
       ];
     },
 
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.employees.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.employees.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
+      this.employees.splice(this.editedIndex, 1);
       this.closeDelete();
     },
 
@@ -236,9 +208,9 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.employees[this.editedIndex], this.editedItem);
       } else {
-        this.desserts.push(this.editedItem);
+        this.employees.push(this.editedItem);
       }
       this.close();
     },

@@ -1,6 +1,6 @@
 <template>
   <div >
-    <h2 class="mt-3">Manage Employees</h2>
+    <h2 class="mt-3">ຈັດການຂໍ້ມູນພະນັກງານ</h2>
     <br>
     <employees/>
   </div>

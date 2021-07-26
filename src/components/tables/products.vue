@@ -1,15 +1,14 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
-    sort-by="calories"
+    :items="products"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Products</v-toolbar-title>
+        <v-toolbar-title>ສິນຄ້າ</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -28,7 +27,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              New Product
+             ເພີ່ມສິນຄ້າໃໝ່
             </v-btn>
           </template>
           <v-card>
@@ -47,7 +46,7 @@
                     <v-text-field
                       v-model="editedItem.product_id"
                       outlined
-                      label="Product ID"
+                      label="ລະຫັດສິນຄ້າ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -58,7 +57,7 @@
                     <v-text-field
                     outlined
                       v-model="editedItem.bill_no"
-                       label="Bill No"
+                       label="ເລກໃບບິນ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -69,7 +68,7 @@
                     <v-text-field
                     outlined
                       v-model="editedItem.name"
-                      label="Product Name"
+                      label="ຊື່ສິນຄ້າ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -80,7 +79,7 @@
                     <v-text-field
                       v-model="editedItem.type"
                       outlined
-                      label="Product Type"
+                      label="ປະເພດ ສິນຄ້າ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -91,7 +90,7 @@
                     <v-text-field
                     outlined
                       v-model="editedItem.amount"
-                      label="Product Amount"
+                      label="ຈຳນວນ"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -119,11 +118,11 @@
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+            <v-card-title class="text-h5">ທ່ານຕ້ອງການລົບສິນຄ່ານີ້ແມ່ນບໍ່?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-btn color="blue darken-1" text @click="closeDelete">ຍົກເລີກ</v-btn>
+              <v-btn color="blue darken-1" text @click="deleteItemConfirm">ຢືນຢັນ</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -157,16 +156,16 @@
       dialogDelete: false,
       headers: [
         {
-          text: 'Product ID',
+          text: 'ລະຫັດສິນຄ້າ',
           align: 'start',
           sortable: false,
           value: 'product_id',
         },
-         { text: 'Bill No', value: 'bill_no',sortable: false, },
-        { text: 'Product Name', value: 'name',sortable: false, },
-        { text: 'Product Type', value: 'type', sortable: false, },
-        { text: 'Product Amount', value: 'amount', sortable: false, },
-        { text: 'Actions', value: 'actions', sortable: false },
+         { text: 'ເລກບິນ', value: 'bill_no',sortable: false, },
+        { text: 'ຊື່ສິນຄ້າ', value: 'name',sortable: false, },
+        { text: 'ປະເພດ', value: 'type', sortable: false, },
+        { text: 'ຈະນວນ', value: 'amount', sortable: false, },
+        { text: 'ຈັດການ', value: 'actions', sortable: false },
       ],
       products: [],
       editedIndex: -1,
@@ -188,7 +187,7 @@
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Product' : 'Edit Product'
+        return this.editedIndex === -1 ? 'ເພີ່ມສິນຄ້າໃໝ່' : 'ແກ້ໄຂສິນຄ້າ'
       },
     },
 
