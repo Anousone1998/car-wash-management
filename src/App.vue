@@ -52,7 +52,7 @@ export default {
   data: () => ({
     items: [
       {
-           title: "Service",
+           title: "ໜ້າຫຼັກ",
             icon: "mdi-car-cog",
             route: '/'
          },
