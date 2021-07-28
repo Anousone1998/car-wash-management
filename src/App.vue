@@ -4,15 +4,18 @@
     <v-navigation-drawer app dense color="#6CC9DF" dark>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Car-wash
+          <v-list-item-title class="text-h6"  align="center">
+           KP CAR WASH
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
       <v-divider></v-divider>
 
-      <v-list dense nav >
+    <v-list-item-group 
+     v-model="selectedItem"
+          color="primary">
+        <v-list dense nav >
         <v-list-item v-for="item in items" :key="item.title" link @click="$router.push({ path: item.route })" >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -23,13 +26,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+    </v-list-item-group>
     </v-navigation-drawer>
 
     <!-- appbar -->
     <v-app-bar app dense >
       <div class="d-flex align-center"></div>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Car Wash</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text>
         <span class="mr-2">Username</span>
@@ -50,6 +53,7 @@ export default {
   name: "App",
 
   data: () => ({
+     selectedItem: 0,
     items: [
       {
            title: "ໜ້າຫຼັກ",

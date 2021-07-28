@@ -1,9 +1,5 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="employees"
-    class="elevation-1"
-  >
+  <v-data-table :headers="headers" :items="employees" class="elevation-1">
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>ພະນັກງານທັງໝົດ</v-toolbar-title>
@@ -12,7 +8,7 @@
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-             ເພີ່ມພະນັກງານໃໝ່
+              ເພີ່ມພະນັກງານໃໝ່
             </v-btn>
           </template>
           <v-card>
@@ -38,11 +34,42 @@
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      v-model="editedItem.dateOfBirth"
-                      outlined
-                      label="ວັນເດືອນປີເກີດ"
-                    ></v-text-field>
+                    <div>
+                      <v-menu
+                        ref="menu"
+                        v-model="menu"
+                        :close-on-content-click="false"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="date"
+                            label="ວັນເດືອນປີເກີດ"
+                            prepend-icon="mdi-calendar"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                            outlined
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                          v-model="date"
+                          :active-picker.sync="activePicker"
+                          :max="
+                            new Date(
+                              Date.now() -
+                                new Date().getTimezoneOffset() * 60000
+                            )
+                              .toISOString()
+                              .substr(0, 10)
+                          "
+                          min="1950-01-01"
+                          @change="save"
+                        ></v-date-picker>
+                      </v-menu>
+                    </div>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
@@ -53,14 +80,14 @@
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                    outlined
+                      outlined
                       v-model="editedItem.address"
                       label="ທີ່ຢູ່"
                     ></v-text-field>
                   </v-col>
-                    <v-col cols="12" sm="6" md="6">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                    outlined
+                      outlined
                       v-model="editedItem.start_date"
                       label="ມື້ເຂົ້າເຮັດວຽກ"
                     ></v-text-field>
@@ -87,10 +114,10 @@
             >
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete"
+              <v-btn color="gray" text @click="closeDelete"
                 >ຍົກເລີກ</v-btn
               >
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm"
+              <v-btn color="red darken-1" text @click="deleteItemConfirm"
                 >ລຶບ</v-btn
               >
               <v-spacer></v-spacer>
@@ -114,6 +141,9 @@
 export default {
   name: "employees",
   data: () => ({
+     activePicker: null,
+      date: null,
+      menu: false,
     dialog: false,
     dialogDelete: false,
     headers: [
@@ -123,11 +153,11 @@ export default {
         sortable: false,
         value: "id",
       },
-      { text: "ຊື່ພະນັກງານ", value: "emp_name", sortable: false},
+      { text: "ຊື່ພະນັກງານ", value: "emp_name", sortable: false },
       { text: "ວັນເດືອນປີເກີດ", value: "dateOfBirth", sortable: false },
-      { text: "ເບີໂທ", value: "phone" , sortable: false},
+      { text: "ເບີໂທ", value: "phone", sortable: false },
       { text: "ທີ່ຢູ່", value: "address", sortable: false },
-       { text: "ວັນ-ເວວລາເລີ່ມເຮັດວຽກ", value: "start_date" },
+      { text: "ວັນ-ເວວລາເລີ່ມເຮັດວຽກ", value: "start_date" },
       { text: "ຈັດການ", value: "actions", sortable: false },
     ],
     employees: [],
@@ -140,6 +170,16 @@ export default {
       start_date: "",
     },
   }),
+   watch: {
+      menu (val) {
+        val && setTimeout(() => (this.activePicker = 'YEAR'))
+      },
+    },
+     methods: {
+      save (date) {
+        this.$refs.menu.save(date)
+      },
+    },
 
   computed: {
     formTitle() {
@@ -165,10 +205,10 @@ export default {
       this.employees = [
         {
           emp_name: "Lactasoiyy",
-      dateOfBirth: "12/12/2000",
-      phone: "2345765",
-      address: "xangabuli",
-      start_date: "12/7/2019",
+          dateOfBirth: "12/12/2000",
+          phone: "2345765",
+          address: "xangabuli",
+          start_date: "12/7/2019",
         },
       ];
     },
