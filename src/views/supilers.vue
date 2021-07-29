@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2 class="mt-3">ຜູ້າສະໜອງ</h2>
+      <h2 class="mt-3">ຜູ້ສະໜອງ</h2>
       <br>
       <supiler/>
     </div>
