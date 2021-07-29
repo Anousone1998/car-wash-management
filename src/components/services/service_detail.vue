@@ -3,11 +3,11 @@
     <template v-slot:activator="{ on, attrs }">
       <v-row>
         <v-col cols="6" md="6">
-          <h2>car on servicing</h2>
+          <h2>ລົດກຳລັງໃຊ້ບໍລິການ</h2>
         </v-col>
         <v-col cols="6" md="6" class="d-flex justify-end ">
           <v-btn dark color="cyan" v-bind="attrs" v-on="on"
-            ><v-icon>mdi-plus</v-icon>Add car</v-btn
+            ><v-icon>mdi-plus</v-icon>ເພີ່ມລົດໃໝ່</v-btn
           >
         </v-col>
       </v-row>
@@ -18,17 +18,17 @@
             <v-row>
               <v-col md="3"
                 ><span>
-                  <strong> Car ID:</strong> {{ item.car_id }}
+                  <strong> ທະບຽນລົດ:</strong> {{ item.car_id }}
                 </span></v-col
               >
               <v-col md="6"
                 ><span
-                  ><strong>Car type: </strong>{{ item.car_type[index] }}</span
+                  ><strong>ປະເພດລົດ: </strong>{{ item.car_type[index] }}</span
                 ></v-col
               >
               <v-col md="3" class="d-flex justify-end "
                 ><span
-                  ><strong>Customer Name: </strong
+                  ><strong>ຊື່ລູກຄ້າ: </strong
                   >{{ item.customer_name }}</span
                 ></v-col
               >
@@ -36,7 +36,7 @@
             <v-divider></v-divider>
             <br />
             <v-row class="ml-1 mr-1">
-              <p>services</p>
+              <p>ລາຍການບໍລິການ</p>
               <v-spacer></v-spacer>
               <v-btn outlined color="primary" dark v-bind="attrs" v-on="on"
                 >edit</v-btn
@@ -78,7 +78,7 @@
     <!-- add customer -->
     <v-card>
       <v-card-title>
-        <span class="text-h5">Services Detail</span>
+        <span class="text-h5">ເພີ່ມຂໍ້ມູນລູກຄ້າ</span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -87,7 +87,7 @@
               <v-text-field
                 v-model="item.customer_name"
                 type="text"
-                label="Customer Name"
+                label="ຊື່ລູກຄ້າ"
                 outlined
               ></v-text-field>
             </v-col>
@@ -95,11 +95,11 @@
               <v-text-field 
               outlined 
    v-model="item.phone"
-              label="Phone"></v-text-field>
+              label="ເບີໂທ"></v-text-field>
             </v-col>
             <v-col cols="12" md="6" sm="6">
               <v-text-field
-                label="Car ID"
+                label="ເລກທະບຽນລົດ"
                 outlined
                 v-model="item.car_id"
               ></v-text-field>
@@ -108,7 +108,7 @@
               <v-select
                 v-model="car_type"
                 :items="item.car_type"
-                label="Select Car Types"
+                label="ປະເພດລົດ"
                 outlined
                 required
               ></v-select>
@@ -118,7 +118,7 @@
               <v-select
                 v-model="car_brand"
                 :items="item.car_brand"
-                label="Car Brand"
+                label="ຍີ່ຫໍ້ລົດ"
                 outlined
               ></v-select>
             </v-col>
