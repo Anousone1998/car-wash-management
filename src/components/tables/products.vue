@@ -28,7 +28,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              New Product
+              ເພີ່ມ
             </v-btn>
           </template>
           <v-card>
@@ -47,7 +47,7 @@
                     <v-text-field
                       v-model="editedItem.product_id"
                       outlined
-                      label="Product ID"
+                      label="ລະຫັດສິນຄ້າ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -58,7 +58,7 @@
                     <v-text-field
                     outlined
                       v-model="editedItem.bill_no"
-                       label="Bill No"
+                       label="ລະຫັດບິນ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -69,7 +69,7 @@
                     <v-text-field
                     outlined
                       v-model="editedItem.name"
-                      label="Product Name"
+                      label="ຊື່ສິນຄ້າ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -80,7 +80,7 @@
                     <v-text-field
                       v-model="editedItem.type"
                       outlined
-                      label="Product Type"
+                      label="ປະເພດສິນຄ້າ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -91,7 +91,7 @@
                     <v-text-field
                     outlined
                       v-model="editedItem.amount"
-                      label="Product Amount"
+                      label="ຈຳນວນ"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -171,24 +171,24 @@
       products: [],
       editedIndex: -1,
       editedItem: {
-        product_id: '',
-        bill_no: '',
-        name: '',
-        type: '',
-        amount: 0,
+        ລະຫັດສິນຄ້າ: '',
+        ລະຫັດບິນ: '',
+        ຊື່ສິນຄ້າ: '',
+        ປະເພດສິນຄ້າ: '',
+        ຈຳນວນ: '',
       },
       defaultItem: {
-        product_id: '',
-        bill_no: '',
-        name: '',
-        type: '',
-        amount: 0,
+         ລະຫັດສິນຄ້າ: '',
+        ລະຫັດບິນ: '',
+        ຊື່ສິນຄ້າ: '',
+        ປະເພດສິນຄ້າ: '',
+        ຈຳນວນ: '',
       },
     }),
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Product' : 'Edit Product'
+        return this.editedIndex === -1 ? 'ເພີ່ມສິນຄ້າ' : 'ແກ້ໄຂ'
       },
     },
 
