@@ -5,7 +5,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            Car-wash !!!
+            Car-wash
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -29,7 +29,7 @@
     <v-app-bar app dense >
       <div class="d-flex align-center"></div>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Car Wash</v-toolbar-title>
+      <v-toolbar-title>Khamphet Car-Wash</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text>
         <span class="mr-2">Username</span>
@@ -52,32 +52,32 @@ export default {
   data: () => ({
     items: [
       {
-           title: "Service",
+           title: "ການໃຫ້ບໍລິການ",
             icon: "mdi-car-cog",
             route: '/'
          },
       { 
-          title: "Products",
+          title: "ຈັດການສິນຄ້າ",
            icon: "mdi-apps",
             route: '/manage_product'
          },
       {
-           title: "Supilers",
+           title: "ຈັດການຜູ້ສະໜອງ",
             icon: "mdi-table-arrow-left",
             route: '/supilers'
      },
       {
-           title: "Employees",
+           title: "ຈັດການຂໍ້ມູນພະນັກງານ",
             icon: "mdi-account-group",
             route: '/employees'
      },
       {
-           title: "Report",
+           title: "ລາຍງານ",
             icon: " mdi-file-chart",
              route: '/report'
      },
       {
-           title: "Manage Service",
+           title: "ຈັດການບໍລິການ",
             icon: "mdi-playlist-star"
      },
     ],
