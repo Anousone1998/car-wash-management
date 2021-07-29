@@ -9,7 +9,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Supilers</v-toolbar-title>
+        <v-toolbar-title>ຂໍ້ມູນຜູ້ສະຫນອງ</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -28,7 +28,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              New Supiler
+              ເພີ່ມ
             </v-btn>
           </template>
           <v-card>
@@ -46,7 +46,7 @@
                   >
                     <v-text-field
                       v-model="editedItem.name"
-                      label="Dessert name"
+                      label="ຊື່ຜູ້ສະໜອງ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -56,7 +56,7 @@
                   >
                     <v-text-field
                       v-model="editedItem.calories"
-                      label="Calories"
+                      label="ເບີໂທ"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -66,10 +66,10 @@
                   >
                     <v-text-field
                       v-model="editedItem.fat"
-                      label="Fat (g)"
+                      label="ທີ່ຢູ່"
                     ></v-text-field>
                   </v-col>
-                  <v-col
+                  <!-- <v-col
                     cols="12"
                     sm="6"
                     md="4"
@@ -78,8 +78,8 @@
                       v-model="editedItem.carbs"
                       label="Carbs (g)"
                     ></v-text-field>
-                  </v-col>
-                  <v-col
+                  </v-col> -->
+                  <!-- <v-col
                     cols="12"
                     sm="6"
                     md="4"
@@ -88,7 +88,7 @@
                       v-model="editedItem.protein"
                       label="Protein (g)"
                     ></v-text-field>
-                  </v-col>
+                  </v-col> -->
                 </v-row>
               </v-container>
             </v-card-text>
@@ -159,35 +159,35 @@
       dialogDelete: false,
       headers: [
         {
-          text: 'Name',
+          text: 'ຊື່ຜູ້ສະຫນອງ',
           align: 'start',
           sortable: false,
           value: 'name',
         },
-        { text: 'Phone', value: 'calories' },
-        { text: 'Address', value: 'fat' },
+        { text: 'ເບີໂທ', value: 'calories' },
+        { text: 'ທີ່ຢູ່', value: 'fat' },
       ],
       desserts: [],
       editedIndex: -1,
       editedItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        calories: '',
+        fat: '',
+        // carbs: '',
+        // protein: '',
       },
       defaultItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        calories: '',
+        fat: '',
+        // carbs: 0,
+        // protein: 0,
       },
     }),
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'ເພີ່ມຂໍ້ມູນຜູ້ສະໜອງ' : 'ແກ້ໄຂ'
       },
     },
 
