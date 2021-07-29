@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2 class="mt-3">Manage Products</h2>
+      <h2 class="mt-3">ຈັດການຂໍ້ມູນສິນຄ້າ</h2>
    <v-row>
      <v-col md="6">
         <v-tabs
@@ -42,7 +42,7 @@ import products from '@/components/tables/products'
       return {
         tab: null,
         items: [
-          'Product in Store', 'Product Ordered'
+          'ສິນຄ້າໃນສາງ', 'ລາຍການສັ່ງຊື້'
         ],
        
       }
