@@ -78,7 +78,8 @@ export default {
      },
       {
            title: "ຈັດການບໍລິການ",
-            icon: "mdi-playlist-star"
+            icon: "mdi-playlist-star",
+            route: '/servicemenu'
      },
     ],
     right: null,
