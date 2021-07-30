@@ -124,11 +124,16 @@
             </v-col>
 
             <v-col cols="12" md="12">
-              <span>Select Service</span><br />
+              <span>ເລືອກບໍລິການ</span><br />
               <v-row>
-                <v-checkbox class="ml-2" v-model="service" label="Wash" value="wash"></v-checkbox>
-                 <v-checkbox class="ml-2" v-model="service" label="Fix"
-                  value="fix"></v-checkbox>
+                <v-checkbox class="ml-2" v-model="service" label="ລ້າງນອກ" value="serivce1"></v-checkbox>
+                 <v-checkbox class="ml-2" v-model="service" label="ລ້າງລົດ" value="service2"></v-checkbox>
+                 <v-checkbox class="ml-2" v-model="service" label="ປ່ຽນນ້ຳມັນເຄື່ອງ" value="service3"></v-checkbox>
+                 <v-checkbox class="ml-2" v-model="service" label="ເຕີມນ້ຳຢາຫມໍ້ນ້ຳ" value="service4"></v-checkbox>
+                 <v-checkbox class="ml-2" v-model="service" label="ຂັດສີ-ເຄືອບເງົາ" value="service5"></v-checkbox>
+                 <v-checkbox class="ml-2" v-model="service" label="ເຄືອບເງົາ" value="service6"></v-checkbox>
+                 <v-checkbox class="ml-2" v-model="service" label="ຂັດເບາະ" value="service7"></v-checkbox>
+                 <v-checkbox class="ml-2" v-model="service" label="ຂັດຢາງໝາກຕອຍ" value="service8"></v-checkbox>
               </v-row>
             </v-col>
           </v-row>
