@@ -53,7 +53,6 @@ export default {
   name: "App",
 
   data: () => ({
-     selectedItem: 0,
     items: [
       {
            title: "ໜ້າຫຼັກ",
@@ -82,7 +81,8 @@ export default {
      },
       {
            title: "ຈັດການບໍລິການ",
-            icon: "mdi-playlist-star"
+            icon: "mdi-playlist-star",
+            route: '/service_management'
      },
     ],
     right: null,

@@ -1,14 +1,14 @@
 <template>
-  <v-data-table :headers="headers" :items="products" class="elevation-1">
+  <v-data-table :headers="headers" :items="employees" class="elevation-1">
     <template v-slot:top>
       <v-toolbar flat>
-        <v-toolbar-title>ສິນຄ້າທັງໝົດ</v-toolbar-title>
+        <v-toolbar-title>ຈັດການຂໍ້ມູນບໍລິການ</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-              ເພີ່ມສິນຄ້າ
+              ເພີ່ມບໍລິການໃໝ່
             </v-btn>
           </template>
           <v-card>
@@ -28,32 +28,30 @@
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.bill_no"
-                      label="ເລກບິນການສັ່ງຊື້"
+                      v-model="editedItem.emp_name"
+                      label="ຊື່ບໍລິການ"
                       outlined
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.product_name"
                       outlined
-                      label="ຊື່ສິນຄ້າ"
+                      v-model="editedItem.phone"
+                      label="ລາຄາ"
                     ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-select
-                      v-model="select"
-                      :items="items"
-                      outlined
-                      label="ປະເພດສິນຄ້າ"
-                      required
-                    ></v-select>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       outlined
-                      v-model="editedItem.qty"
-                      label="ຈຳນວນ"
+                      v-model="editedItem.address"
+                      label="ປະເພດລົດ"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="6">
+                    <v-text-field
+                      outlined
+                      v-model="editedItem.start_date"
+                      label="ມື້ເຂົ້າເຮັດວຽກ"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -78,7 +76,7 @@
             >
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="gray darken-1" text @click="closeDelete"
+              <v-btn color="gray" text @click="closeDelete"
                 >ຍົກເລີກ</v-btn
               >
               <v-btn color="red darken-1" text @click="deleteItemConfirm"
@@ -103,7 +101,7 @@
 
 <script>
 export default {
-  name: "products",
+  name: "service_management",
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -114,57 +112,51 @@ export default {
         sortable: false,
         value: "id",
       },
-      { text: "ເລກທີບິນສັ່ງຊື້", value: "bill_no", sortable: false },
-      { text: "ຊື່ສິນຄ້າ", value: "product_name", sortable: false },
-      { text: "ປະເພດ", value: "type", sortable: false },
-      { text: "ຈຳນວນ", value: "qty", sortable: false },
+      { text: "ຊື່ພະນັກງານ", value: "emp_name", sortable: false },
+      { text: "ວັນເດືອນປີເກີດ", value: "dateOfBirth", sortable: false },
+      { text: "ເບີໂທ", value: "phone", sortable: false },
+      { text: "ທີ່ຢູ່", value: "address", sortable: false },
+      { text: "ວັນ-ເວວລາເລີ່ມເຮັດວຽກ", value: "start_date" },
       { text: "ຈັດການ", value: "actions", sortable: false },
     ],
-    products: [],
+    employees: [],
     editedIndex: -1,
     editedItem: {
-      bill_no: "",
-      product_name: "",
-      type: "",
-      qty: 0,
+      emp_name: "",
+      dateOfBirth: "",
+      phone: "",
+      address: "",
+      start_date: "",
     },
   }),
-
+  
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "ເພີ່ມພະນັກງານໃໝ່" : "ແກ້ໄຂພະນັກງານ";
+      return this.editedIndex === -1 ? "ເພີ່ມບໍລິການໃໝ່" : "ແກ້ໄຂຂໍ້ມູນບໍລິການ";
     },
   },
 
-  watch: {
-    dialog(val) {
-      val || this.close();
-    },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    },
-  },
-
+ 
   created() {
     this.initialize();
   },
 
   methods: {
-
+   
     editItem(item) {
-      this.editedIndex = this.products.indexOf(item);
+      this.editedIndex = this.employees.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      this.editedIndex = this.products.indexOf(item);
+      this.editedIndex = this.employees.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      this.products.splice(this.editedIndex, 1);
+      this.employees.splice(this.editedIndex, 1);
       this.closeDelete();
     },
 
@@ -186,9 +178,9 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.products[this.editedIndex], this.editedItem);
+        Object.assign(this.employees[this.editedIndex], this.editedItem);
       } else {
-        this.products.push(this.editedItem);
+        this.employees.push(this.editedItem);
       }
       this.close();
     },

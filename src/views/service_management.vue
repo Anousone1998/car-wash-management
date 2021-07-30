@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2 class="mt-3">ຈັດການສິນຄ້າ</h2>
+      <h2 class="mt-3">ຈັດການຂໍ້ມູນບໍລິການ</h2>
    <v-row>
      <v-col md="6">
         <v-tabs
@@ -24,7 +24,7 @@
         :key="item"
       >
       <v-card class="pa-2">
-         <products/>
+         <service_management/>
       </v-card>
       </v-tab-item>
     </v-tabs-items>
@@ -32,16 +32,17 @@
 </template>
 
 <script>
-import products from '@/components/tables/products'
+import service_management from '@/components/tables/service_management'
   export default {
+    name: 'service_magement',
     components: {
-      products
+      service_management
     },
     data () {
       return {
         tab: null,
         items: [
-          'ສິນຄ້າຢູ່ໃນສາງ', 'ສິນຄ້າສັ່ງເຂົ້າມາໃໝ່'
+          'ລົດຈັກ', 'ລົດເກັງ', 'ລົດຕູ້', "ລົດຈິບ", "ລົດກະບະ"
         ],
        
       }

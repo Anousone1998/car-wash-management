@@ -33,9 +33,9 @@
                 >
                 <v-col md="3" class="d-flex justify-end ">
                   <span
-                    ><strong>ຊື່ລູກຄ້າ: </strong> <v-chip class="ma-2">
+                    ><strong>ຊື່ລູກຄ້າ: </strong> 
                    {{ item.customer_name }}
-                  </v-chip></span
+                 </span
                   ></v-col
                 >
               </v-row>

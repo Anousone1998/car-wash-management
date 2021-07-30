@@ -33,44 +33,14 @@
                       outlined
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <div>
-                      <v-menu
-                        ref="menu"
-                        v-model="menu"
-                        :close-on-content-click="false"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="auto"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field
-                            v-model="date"
-                            label="ວັນເດືອນປີເກີດ"
-                            prepend-icon="mdi-calendar"
-                            readonly
-                            v-bind="attrs"
-                            v-on="on"
-                            outlined
-                          ></v-text-field>
-                        </template>
-                        <v-date-picker
-                          v-model="date"
-                          :active-picker.sync="activePicker"
-                          :max="
-                            new Date(
-                              Date.now() -
-                                new Date().getTimezoneOffset() * 60000
-                            )
-                              .toISOString()
-                              .substr(0, 10)
-                          "
-                          min="1950-01-01"
-                          @change="save"
-                        ></v-date-picker>
-                      </v-menu>
-                    </div>
+                     <v-col cols="12" sm="6" md="6">
+                    <v-text-field
+                      v-model="editedItem.emp_name"
+                      label="ວັນເດືອນປີເກີດ"
+                      outlined
+                    ></v-text-field>
                   </v-col>
+                
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       outlined
@@ -170,49 +140,18 @@ export default {
       start_date: "",
     },
   }),
-   watch: {
-      menu (val) {
-        val && setTimeout(() => (this.activePicker = 'YEAR'))
-      },
-    },
-     methods: {
-      save (date) {
-        this.$refs.menu.save(date)
-      },
-    },
 
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "ເພີ່ມພະນັກງານໃໝ່" : "ແກ້ໄຂພະນັກງານ";
     },
   },
-
-  watch: {
-    dialog(val) {
-      val || this.close();
-    },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    },
-  },
-
   created() {
     this.initialize();
   },
 
   methods: {
-    initialize() {
-      this.employees = [
-        {
-          emp_name: "Lactasoiyy",
-          dateOfBirth: "12/12/2000",
-          phone: "2345765",
-          address: "xangabuli",
-          start_date: "12/7/2019",
-        },
-      ];
-    },
-
+   
     editItem(item) {
       this.editedIndex = this.employees.indexOf(item);
       this.editedItem = Object.assign({}, item);
